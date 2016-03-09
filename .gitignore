@@ -1,0 +1,4 @@
+web
+lib/stacks-project/
+lib/node_modules/
+*.pyc

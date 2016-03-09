@@ -1,0 +1,351 @@
+
+
+body {
+    font-family : Georgia, serif;
+    font-size   : 17px;
+    line-height : 1.5;
+    background  : #ccc;
+    position    : relative;
+    z-index     : -1;
+}
+
+div.chapter {
+    max-width      : 40em;
+    margin         : auto;
+    padding-top    : 4em;
+    padding-bottom : 8em;
+    text-align     : justify;
+    padding-left   : 1.5em;
+    padding-right  : 1.5em;
+    border-right   : 1px solid #666;
+    border-left    : 1px solid #666;
+    background     : white;
+    box-shadow     : 0px 0px 4px 4px rgba(102,102,102,0.8);
+}
+
+div.section {
+    position   : relative;
+    margin-top : 2em;
+}
+
+h1 {
+    text-align    : center;
+    font-size     : 180%;
+    font-weight   : bold;
+    margin-top    : .3em;
+    margin-bottom : .3em;
+}
+
+.pre-title, .post-title {
+    text-align : center;
+}
+
+h2 {
+    font-size   : 120%;
+    font-weight : bold;
+}
+
+h2 span.number {
+    margin-right : .5em;
+}
+
+h3 {
+    font-size   : 105%;
+    font-weight : bold;
+}
+
+h3 span.number {
+    margin-right : .5em;
+}
+
+p {
+    margin-top : 1em;
+}
+
+div.thm {
+    position   : relative;
+    margin-top : 1em;
+}
+
+div.thm.lemma, div.thm.proposition, div.thm.theorem {
+    font-style : italic;
+}
+
+span.thm-header {
+    display        : inline-block;
+    text-align     : left;
+    font-style     : normal;
+    font-weight    : bold;
+    text-transform : capitalize;
+}
+
+span.thm-header:after {
+    content: ".";
+}
+
+div.proof {
+    margin-top : 1em;
+    position   : relative;
+}
+
+span.proof-header {
+    font-style     : italic;
+    text-transform : capitalize;
+}
+
+span.proof-header:after {
+    content: ":";
+}
+
+div.proof:after {
+    content  : "";
+    position : absolute;
+    bottom   : .4em;
+    right    : 0;
+    display  : inline-block;
+    width    : .5em;
+    height   : .5em;
+    border   : 1px solid black;
+}
+
+span.label {
+    display : none;
+}
+
+ol, ul {
+    counter-reset : list;
+    padding-left  : 2.3em;
+    margin-bottom : .5em;
+}
+
+ul {
+    list-style-type : disc;
+}
+
+ol > li, ul > li {
+    position   : relative;
+    margin-top : .5em;
+}
+
+ol > li:before {
+    counter-increment : list;
+    content           : "(" counter(list, decimal) ") ";
+    position          : absolute;
+    right             : calc(100% + .3em);
+}
+
+ol > li.manualcounter:before {
+    display: none;
+}
+
+ul > li.manualcounter {
+    list-style-type : none;
+}
+
+ul > li.manualcounter > .counter,
+ol > li.manualcounter > .counter {
+    display  : block;
+    position : absolute;
+    right    : calc(100% + .3em);
+}
+
+ol ol > li:before {
+    content           : "(" counter(list, lower-alpha) ") ";
+}
+
+a {
+    color           : #0000dd;
+    text-decoration : inherit;
+}
+
+span.it {
+    font-style : italic;
+}
+
+span.bf {
+    font-weight : bold;
+}
+
+span.bflarge {
+    font-weight : bold;
+    font-size   : large;
+}
+
+span.footnote, div.tag {
+    float         : right;
+    clear         : both;
+    margin-bottom : 1em;
+    width         : 0px;
+    display       : block;
+    position      : relative;
+    left          : 1em;
+}
+
+span.footnote-content {
+    display      : block;
+    width        : 13em;
+    font-size    : 70%;
+    text-align   : left;
+    font-style   : normal;
+    background   : white;
+    padding      : 1em;
+    padding-left : 2em;
+    border       : 1px solid #666;
+    position     : relative;
+    z-index      : -1;
+}
+
+span.footnote-number {
+    vertical-align : super;
+    margin-right   : .5em;
+    font-weight    : bold;
+}
+
+a.footnote-link {
+    vertical-align  : super;
+    font-size       : 70%;
+    font-style      : normal;
+    font-weight     : bold;
+    text-decoration : none;
+}
+
+span.footnote-title {
+    font-weight : bold;
+    text-transform : capitalize;
+}
+
+span.footnote-title:after {
+    content: ':';
+}
+
+div.tag a {
+    display      : block;
+    width        : 3.5em;
+    font-family  : "Courier New", Courier, monospace;
+    font-weight  : bold;
+    font-size    : 70%;
+    text-align   : left;
+    font-style   : normal;
+    background   : white;
+    padding      : .3em;
+    padding-left : 2em;
+    border       : 1px solid #666;
+    position     : relative;
+    z-index      : -1;
+}
+
+#nav {
+    position : fixed;
+    top      : 2em;
+    z-index  : -1;
+}
+
+#nav a:first-child {
+    border-top  : 1px solid #666;
+    padding-top : 1em;
+}
+
+#nav a:last-child {
+    border-bottom  : 1px solid #666;
+    padding-bottom : 1em;
+}
+
+#nav a {
+    position        : relative;
+    right           : 5em;
+    display         : block;
+    width           : 3.5em;
+    height          : 2em;
+    line-height     : 2em;
+    border-left     : 1px solid #666;
+    border-right    : 1px solid #666;
+    background      : white;
+    text-align      : center;
+    padding-right   : 1em;
+    text-decoration : none;
+    color           : inherit;
+}
+
+#nav a:hover {
+    text-decoration: blink;
+}
+
+#nav-index:after {
+    content   : "\29C8";
+    font-size : 180%;
+}
+
+#nav-next:after {
+    content   : "\27AB";
+    font-size : 120%;
+}
+
+#nav-prev:after {
+    content           : "\27AC";
+    font-size         : 120%;
+    display           : block;
+    -webkit-transform : rotate(180deg);
+    -moz-transform    : rotate(180deg);
+}
+
+.equation {
+    position : relative;
+}
+
+.equation-label {
+    position : absolute;
+}
+
+.equation-label:before {
+    content : "(";
+}
+
+.equation-label:after {
+    content : ")";
+}
+
+.toc {
+    text-align : center;
+    margin-top : 3em;
+}
+
+.toc ul {
+    margin     : auto;
+    margin-top : 2em;
+    display    : table;
+    text-align : left;
+}
+
+.toc li {
+    display : table-row;
+}
+
+.toc li.toc-part {
+    display        : block;
+    width          : 0;
+    padding-top    : 2em;
+    padding-bottom : .5em;
+    white-space    : nowrap;
+    font-weight    : bold;
+}
+
+.toc a {
+    display : table-cell;
+}
+
+.toc-num {
+    padding-right : 1.3em;
+}
+
+div.center {
+    text-align : center;
+}
+
+div.quote {
+    margin : 2em 3em;
+}
+
+pre {
+    font-family : "Lucida Console", Monaco, monospace;
+    font-size   : 15px;
+}
