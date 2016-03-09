@@ -29,5 +29,5 @@ web:
 
 clean:
 	rm -rf lib/stacks-project
-	rm -rf lib/node-modules
+	rm -rf lib/node_modules
 	rm -rf web
