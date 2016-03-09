@@ -15,7 +15,6 @@ except ImportError:
     import re
 
 import stacks_project_info
-import katexfilter
 
 #######################################################################
 # 
@@ -149,7 +148,6 @@ class Parser(object):
                 tex_code = in_file.read()
             tex_code = self._preparse(tex_code)
             html_code = self.regex.sub(self._parse_handler, tex_code)
-            html_code = self._postparse(html_code)
             self.bodies = html_code.split("\x02")
             toc = self.create_toc()
             self.bodies.insert(0, toc)
@@ -167,25 +165,6 @@ class Parser(object):
         if end:
             tex_code = tex_code[:end.start()]
         return tex_code
-
-    def _postparse(self, html_code):
-        def proc_katex(match):
-            mode = match.group(1)
-            tex_code = match.group(2)
-            katex = katexfilter.process(tex_code)
-            status = katex[0]
-            katex = katex[1:]
-            if status == "1":
-                return katex
-            elif mode == "normal":
-                return "$" + tex_code + "$"
-            else:
-                return "$$" + tex_code + "$$"
-        return re.sub(
-            "\x04(.*?)\x05(.*?)\x06", 
-            proc_katex, 
-            html_code,
-            flags=re.DOTALL)
 
     def create_toc(self):
         toc = ("<div class='toc'>\n" +
@@ -431,21 +410,15 @@ def __(parser):
 def __(parser):
     if parser.math_mode:
         parser.math_mode = False
-        return "\x06\n"
+        return "$$\n"
     else:
         parser.math_mode = True
-        return "\n\x04dispay\x05"
+        return "\n$$"
 
 @Parser.rule(r"\$")
 def __(parser):
-    if parser.math_mode:
-        parser.math_mode = False
-        return "\x06"
-    else:
-        parser.math_mode = True
-        return "\x04normal\x05"
-    # parser.math_mode = not parser.math_mode
-    # return "$"
+    parser.math_mode = not parser.math_mode
+    return "$"
 
 @Parser.rule(r"{\\it\s")
 def __(parser):
@@ -679,7 +652,7 @@ def __(parser):
 eqn_tmpl="""
 <div class='equation' id='{tag}'>{tagdiv}
 <span class='equation-label'>{number}</span>
-\x04display\x05
+$$
 """
 
 @Parser.rule(r"\\begin{equation}\n\\label{(.*)}")
@@ -697,7 +670,7 @@ def __(parser, label):
 @Parser.rule(r"\\end{equation}")
 def __(parser):
     parser.math_mode = False
-    return "\n\x06\n</div>\n"
+    return "\n$$\n</div>\n"
 
 @Parser.rule(r"\\begin{enumerate}")
 def __(parser):

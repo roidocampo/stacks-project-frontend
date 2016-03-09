@@ -1,17 +1,13 @@
 
 all: vendor-update chapters staticfiles
 
-vendor-setup: lib/stacks-project lib/node-modules
+vendor-setup: lib/stacks-project
 
 lib/stacks-project:
 	cd lib && git clone https://github.com/stacks/stacks-project.git
 
-lib/node_modules:
-	cd lib && npm install
-
 vendor-update: vendor-setup
 	cd lib/stacks-project && git pull
-	cd lib && npm update
 
 chapters: | web
 	python lib/proc_stacks_chapter.py
@@ -29,5 +25,4 @@ web:
 
 clean:
 	rm -rf lib/stacks-project
-	rm -rf lib/node_modules
 	rm -rf web
